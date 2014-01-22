@@ -33,13 +33,8 @@ X = data(:, 1); y = data(:, 2);
 m = length(y); % number of training examples
 
 % Plot Data
+% Note: You have to complete the code in plotData.m
 plotData(X, y);
-f1 = figure(1)
-%figure(1), clf;  % can specify the figure number
-%subplot(1,2,1);  % Divide plot into 1x2 grid, access 1st element
-plot(X, y, 'rx', 'MarkerSize', 10); % Plot the data
-ylabel('Profit in $10,000s'); % Set the yô€€€axis label
-xlabel('Population of City in 10,000s'); % Set the xô€€€axis label
 
 fprintf('Program paused. Press enter to continue.\n');
 pause;
@@ -63,15 +58,15 @@ theta = gradientDescent(X, y, theta, alpha, iterations);
 % print theta to screen
 fprintf('Theta found by gradient descent: ');
 fprintf('%f %f \n', theta(1), theta(2));
-fprintf('Final cost by gradient descent : %f\n',computeCost(X, y, theta));
-
+fprintf('Final cost : ');
+computeCost(X, y, theta)
 
 % Plot the linear fit
-set(0,'CurrentFigure',f1) %Comment out if above line is used instead
-hold on; % keep previous plot visible
+%hold on; % keep previous plot visible
+figure;
 plot(X(:,2), X*theta, '-')
 legend('Training data', 'Linear regression')
-hold off % don't overlay any more plots on this figure
+%hold off % don't overlay any more plots on this figure
 
 % Predict values for population sizes of 35,000 and 70,000
 predict1 = [1, 3.5] *theta;
@@ -80,12 +75,15 @@ fprintf('For population = 35,000, we predict a profit of %f\n',...
 predict2 = [1, 7] * theta;
 fprintf('For population = 70,000, we predict a profit of %f\n',...
     predict2*10000);
+
 	
 %% =================== Calculate theta by normal equation ===================
 theta_normal = pinv(X' * X) * X' * y;
 % print theta to screen
 fprintf('Theta found by normal equation: ');
 fprintf('%f %f \n', theta_normal(1), theta_normal(2));
-fprintf('Final cost by normal equation : %f\n',computeCost(X, y, theta_normal));
 
+fprintf('Program paused. Press enter to continue.\n');
+
+pause;
 
