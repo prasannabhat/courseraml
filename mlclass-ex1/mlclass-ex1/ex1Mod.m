@@ -51,11 +51,12 @@ X = [ones(m, 1), data(:,1)]; % Add a column of ones to x
 theta = zeros(2, 1); % initialize fitting parameters
 
 % Some gradient descent settings
-iterations = 1500;
-alpha = 0.01;
+iterations = 5000;
+alpha = 0.001;
 
 % compute and display initial cost
 computeCost(X, y, theta)
+
 
 % run gradient descent
 theta = gradientDescent(X, y, theta, alpha, iterations);
@@ -81,11 +82,7 @@ predict2 = [1, 7] * theta;
 fprintf('For population = 70,000, we predict a profit of %f\n',...
     predict2*10000);
 	
-%% =================== Calculate theta by normal equation ===================
-theta_normal = pinv(X' * X) * X' * y;
-% print theta to screen
-fprintf('Theta found by normal equation: ');
-fprintf('%f %f \n', theta_normal(1), theta_normal(2));
-fprintf('Final cost by normal equation : %f\n',computeCost(X, y, theta_normal));
+
+%plotCostFunction(X,y,theta);
 
 
